@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado da Enquete</title>
+</head>
+<body>
+
+<!-- Título (pergunta) -->
+<h1>{{ question.question_text }}</h1>
+
+<!-- Lista de opções que a gente pode votar. Nós podemos votar uma ou outra-->
+<ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} -- {{choice.votes}} vote{{ choice.votes |pluralize }}</li>
+    {% endfor %}
+</ul>
+
+<!-- Vai votar de novo?. E direciona para a parte de votação-->
+<a href="{% url 'polls:vote' question.id %}">Vote again?</a>
+<!-- Caso não queira votar novamente, direciona para index, aonde tem todas as perguntas-->
+<a href="{% url 'polls:index' %}">See other poll?</a>
+
+</body>
+</html>

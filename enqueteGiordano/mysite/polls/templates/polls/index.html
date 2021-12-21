@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poll da Hashtag</title>
+</head>
+<body>
+<!-- Olhando na lista latest_question, se aquela lista for verdade, o ul vai dar uma lista de questões.-->
+{% if latest_question_list %}
+    <!-- E essa lista de questões sempre vai fazer esse formato-->
+    <ul>
+    {% for question in latest_question_list %}
+        <!-- <a O link que vai direcionar a uma pasta que tem essa característica </a> >nome da questão-->
+        <li><a href="{%url 'polls:vote' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available</p>
+{% endif %}
+</body>
+</html>
